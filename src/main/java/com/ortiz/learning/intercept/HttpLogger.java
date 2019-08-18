@@ -1,4 +1,4 @@
-package gradle.test.intercept;
+package com.ortiz.learning.intercept;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,5 +7,5 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-@interface SplunkJsonLogging {
+@interface HttpLogger {
 }
