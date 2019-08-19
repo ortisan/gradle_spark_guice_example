@@ -3,12 +3,45 @@
  */
 package com.ortiz.learning;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.StatusLine;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.mockito.junit.MockitoJUnitRunner;
 
+import java.io.IOException;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+
+@RunWith(MockitoJUnitRunner.class)
 public class AppTest {
+
+    @Mock
+    private HttpClient httpClient;
+    @Mock
+    private HttpResponse httpResponse;
+    @Mock
+    private StatusLine statusLine;
+
+    @Before
+    public void init() throws IOException {
+        MockitoAnnotations.initMocks(this);
+        when(httpClient.execute(any())).thenReturn(this.httpResponse);
+        when(statusLine.getStatusCode()).thenReturn(500);
+        when(httpResponse.getStatusLine()).thenReturn(statusLine);
+    }
+
     @Test
-    public void testAppHasAGreeting() {
-        App classUnderTest = new App();
-//        assertNotNull("app should have a greeting", classUnderTest.getGreeting());
+    public void testAppHasAGreeting() throws IOException {
+        HttpResponse response = httpClient.execute(new HttpGet("http://google.com"));
+        int statusCode = response.getStatusLine().getStatusCode();
+        System.out.println("statusCode = " + statusCode);
     }
 }
