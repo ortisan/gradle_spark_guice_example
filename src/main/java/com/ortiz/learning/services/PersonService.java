@@ -1,15 +1,25 @@
 package com.ortiz.learning.services;
 
-import com.google.inject.Singleton;
+import com.google.inject.Inject;
 import com.ortiz.learning.model.Address;
+import com.ortiz.learning.model.ContextObject;
 import com.ortiz.learning.model.Person;
+import spark.Request;
 
 import java.util.Arrays;
 
-@Singleton
 public class PersonService implements IPersonService {
 
+    private ContextObject contextObject;
+
+    @Inject
+    public PersonService(ContextObject contextObject) {
+        this.contextObject = contextObject;
+    }
+
     public Person getPerson() {
+        Request request = contextObject.getRequest();
+        System.out.println("request = " + request);
         Person person = new Person();
         person.setName("Marcelo");
         person.setLastName("Ortiz");

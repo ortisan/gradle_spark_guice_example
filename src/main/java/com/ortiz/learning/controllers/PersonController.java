@@ -5,8 +5,6 @@ import com.google.inject.Inject;
 import com.ortiz.learning.services.PersonService;
 import spark.Service;
 
-import static spark.Spark.get;
-
 public class PersonController implements SparkController {
 
     @Inject
