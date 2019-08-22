@@ -1,6 +1,7 @@
 package com.ortiz.learning.services;
 
 import com.google.inject.Inject;
+import com.ortiz.learning.intercept.HttpLogger;
 import com.ortiz.learning.model.Address;
 import com.ortiz.learning.model.ContextObject;
 import com.ortiz.learning.model.Person;
@@ -17,6 +18,7 @@ public class PersonService implements IPersonService {
         this.contextObject = contextObject;
     }
 
+    @HttpLogger(message = "Interceptando Requisicao HTTP")
     public Person getPerson() {
         Request request = contextObject.getRequest();
         System.out.println("request = " + request);

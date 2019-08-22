@@ -7,5 +7,7 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
-@interface HttpLogger {
+public @interface HttpLogger {
+    String message();
+    LoggerMapperEnum mapperEnum();
 }

@@ -7,6 +7,8 @@ public class LoggerModule extends AbstractModule {
 
     @Override
     protected void configure() {
-        bindInterceptor(Matchers.any(), Matchers.annotatedWith(HttpLogger.class), new LoggerInterceptor());
+        LoggerInterceptor loggerInterceptor = new LoggerInterceptor();
+        requestInjection(loggerInterceptor);
+        bindInterceptor(Matchers.any(), Matchers.annotatedWith(HttpLogger.class), loggerInterceptor);
     }
 }

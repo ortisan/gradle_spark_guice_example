@@ -5,7 +5,7 @@ import com.google.inject.assistedinject.AssistedInject;
 import spark.Request;
 import spark.Response;
 
-public class ContextObject implements IContextObject {
+public class ContextObject<R,P> implements IContextObject {
 
     private Request request;
     private Response response;
